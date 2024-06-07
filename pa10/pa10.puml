@@ -1,0 +1,26 @@
+@startuml
+class Employee {
+  -name: string
+  -email: string
+  -role: string
+  -group_id: string
+  +Employee(string name, string email, string role, string group_id = "")
+  +operator<<(ostream& os, const Employee& emp): ostream&
+  +operator>>(istream& is, Employee& emp): istream&
+}
+
+class Group {
+  -name: string
+  -group_id: string
+  -area: string
+  -employees: vector<Employee>
+  +Group(string name, string group_id, string area)
+  +add_employee(const Employee& employee): void
+  +operator-(int num): Group
+  +operator+(const Group& other): Group
+  +operator<<(ostream& os, const Group& group): ostream&
+  +operator>>(istream& is, Group& group): istream&
+}
+
+Group "1" *-- "0..*" Employee
+@enduml
